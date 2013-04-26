@@ -1,0 +1,23 @@
+{
+	"name": "EVE-node",
+	"version": "0.0.1",
+	"description" : "Server to connect to serial devices using LLAP protocol",
+  	"keywords": "serial, socket.io, node-serialport",
+	"author": {
+		"name": "Richard Osterloh",
+		"email": "richard.osterloh@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:rosterloh/EVE-node.git"
+	},
+	"dependencies": {
+		"express": "3.x",
+		"socket.io": "0.9.x",
+		"serialport": "1.1.x",
+	},
+	"engines": {
+		"node": "0.11.x",
+		"npm":  "1.2.x"
+	}
+}
