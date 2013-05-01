@@ -151,18 +151,38 @@ function animate(socket, leds) {
 
 var lhelper = require('./llap_helper');
 
-onDataOverSerial = function(data){
+var onDataOverSerial = function(data){
     var msg = data.toString();
 	// process data received
 	if (lhelper.isValid(msg)) {
-		// log the message
-		logger.log_message(msg);
 		// let all the clients know about the message
 		sockets.emit('received-llap-msg', { content: msg });
 	} else {
 		// message not valid
 	}
 };
+
+var incomingData = "";
+var llapParser = function(emitter, buffer){
+    incomingData += buffer.toString();
+	// remove any stuff before a signature 'a' appears
+	incomingData = incomingData.replace(/^[^]*?a/,'a');
+	while (incomingData.length >= 12) {
+		emitter.emit('data',incomingData.substr(0,12));
+        incomingData = incomingData.substr(12).replace(/^[^]*?a/,'a');
+	}
+}
+
+var port = '/dev/ttySRF0'
+console.log('* attempting to connect to serial at :', port, ' *');
+var serport = new serialport.SerialPort(port, { baudrate: 9600, parser: llapParser });
+serport.on("open", function () {
+	console.log('* connection to a serial port successful ! *');
+	serport.on('data', function(data){
+        // send incoming data from serport out to the socket server //
+		socket.onDataOverSerial(data);
+	});
+});
 
 // handle socket events
 function handleSocket(socket) {
