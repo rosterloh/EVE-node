@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-function LlapData($scope, $http, socket) {
+function LlapCtrl($scope, $http, socket) {
   
   // handle incoming change events
   socket.on("data:received", function(data) {
