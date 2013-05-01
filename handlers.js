@@ -150,22 +150,12 @@ function animate(socket, leds) {
 }
 
 var lhelper = require('./llap_helper');
-
-var onDataOverSerial = function(data){
-    var msg = data.toString();
-	// process data received
-	if (lhelper.isValid(msg)) {
-		// let all the clients know about the message
-		sockets.emit('received-llap-msg', { content: msg });
-	} else {
-		// message not valid
-	}
-};
+var com = require("serialport");
 
 var incomingData = "";
 var llapParser = function(emitter, buffer){
     incomingData += buffer.toString();
-	// remove any stuff before a signature 'a' appears
+    // remove any stuff before a signature 'a' appears
 	incomingData = incomingData.replace(/^[^]*?a/,'a');
 	while (incomingData.length >= 12) {
 		emitter.emit('data',incomingData.substr(0,12));
@@ -173,15 +163,32 @@ var llapParser = function(emitter, buffer){
 	}
 }
 
-var port = '/dev/ttySRF0'
-console.log('* attempting to connect to serial at :', port, ' *');
-var serport = new serialport.SerialPort(port, { baudrate: 9600, parser: llapParser });
-serport.on("open", function () {
-	console.log('* connection to a serial port successful ! *');
-	serport.on('data', function(data){
-        // send incoming data from serport out to the socket server //
-		socket.onDataOverSerial(data);
-	});
+var serialPort = new com.SerialPort("/dev/ttySRF0", {
+    baudrate: 9600,
+    parser: llapParser
+    //parser: com.parsers.raw
+});
+
+serialPort.on('open',function() {
+  console.log('Port open');
+});
+
+serialPort.on('data', function(data) {
+  var msg = data.toString();
+  // process data received
+  if (lhelper.isValid(msg)) {
+    var reading = {
+        id: msg.substring(1,3),
+        type: msg.substring(3,6),
+        value: msg.substring(6,12).replace(/-/g, '')
+    };
+    console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
+	// let all the clients know about the message
+	sockets.emit('received-llap-msg', reading);
+  } else {
+	// message not valid
+    console.log('Invalid message received. ['+msg+']');
+  }
 });
 
 // handle socket events
