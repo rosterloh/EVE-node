@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('app', ['teTouchevents']).
+//var app = angular.module('app', ['teTouchevents']).
+var app = angular.module('app', []).
 
 factory('socket', function ($rootScope) {
   console.log("socket factory");
