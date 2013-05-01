@@ -1,6 +1,5 @@
 'use strict';
 
-
 var app = angular.module('app', ['teTouchevents']).
 
 factory('socket', function ($rootScope) {
