@@ -1,6 +1,20 @@
 'use strict';
 
 /* Controllers */
+function LlapData($scope, $http, socket) {
+  
+  // handle incoming change events
+  socket.on("data:received", function(data) {
+    var id = data.id;
+    $scope.leds[id].r = data.r;
+    $scope.leds[id].g = data.g;
+    $scope.leds[id].b = data.b;
+  });
+
+  socket.on("data:sent", function(data) {
+    $scope.leds = data;
+  });
+}
 
 function LedCtrl($scope, $http, socket) {
 
