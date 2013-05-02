@@ -25,8 +25,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
  
-app.get('/', routes.index);
- 
+app.get('/', routes.index); 
  
 console.log("Express server listening on port 8888");
 /*
