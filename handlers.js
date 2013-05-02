@@ -211,15 +211,18 @@ function renderNodes(request, response) {
 
 // handle socket events
 function handleSocket(socket) {
-  socket.on("change:led", function(data) {
-    //changeLed(socket, data);
-  });
-  socket.on("startAnimation", function(data) {
-    //startAnimation(socket, leds);
-  });
-  socket.on("stopAnimation", function(data) {
-    //stopAnimation(socket);
-  });
+    socket.on("get:nodes", function(data) {
+        socket.emit("nodes", nodes);
+    });
+    socket.on("change:led", function(data) {
+        //changeLed(socket, data);
+    });
+    socket.on("startAnimation", function(data) {
+        //startAnimation(socket, leds);
+    });
+    socket.on("stopAnimation", function(data) {
+        //stopAnimation(socket);
+    });
 }
 
 exports.nodes = renderNodes;
