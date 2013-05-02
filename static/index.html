@@ -17,11 +17,10 @@
         <div class="hero-unit">
             <h1>Data display for EVE Alpha</h1>
             <p>Currently displaying all data from household nodes sent in LLAP format via SRF modules.</p>
-            <p><a class="btn btn-primary btn-large" ng-click="startAnimation()">Start &raquo;</a></p>
-            <p><a class="btn btn-primary btn-large" ng-click="stopAnimation()">Stop &raquo;</a></p>
+            <p><a class="btn btn-primary btn-large" ng-click="startAnimation()">Start &raquo;</a>
+            <a class="btn btn-primary btn-large" ng-click="stopAnimation()">Stop &raquo;</a></p>
         </div><!-- .hero-unit -->
-        
-        
+            
         <div class="row" >
             <div ng-repeat="node in nodes" class="span4">
                 <p>{{node.id}}</p>
