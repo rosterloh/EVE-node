@@ -4,7 +4,13 @@ var express = require('express')
  
 var app = express();
 var server = app.listen(8888);
-var io = require('socket.io').listen(server);
+var io = require('socket.io')
+    , handlers = require('./handlers.js');
+
+io.set('log level', 1);  
+io.sockets.on("connection", handlers.handleSocket );
+//console.log("socket started ...");
+io.listen(server);
  
 app.configure(function(){
     //app.set('views', __dirname + '/views');
@@ -28,32 +34,3 @@ app.configure('development', function(){
 //app.get('/', routes.index); 
  
 console.log("Express server listening on port 8888");
-
-/*
-//var server = require("./server.js");
-//var router = require("./router.js");
-var handlers = require("./handlers.js");
-//var sockets = require("./sockets.js");
-var express = require('express');
-var app = express()
-  , http = require('http')
-  , server = http.createServer(app)
-  , io = require('socket.io').listen(server);
-  
-
-
-app.use(express.static(__dirname + '/static'));
-
-
-app.listen(process.env.PORT || 8888);
-
-io.set('log level', 1);  
-io.sockets.on("connection", handlers.handleSocket );
-console.log("socket started ...");
-server.listen(3000);
-*/
-//var handler = {};
-//handler["/leds"] = handlers.leds;
-
-//server.start(router.routeHttp, handler);
-//sockets.start(server.app, handlers.handleSocket);
