@@ -1,5 +1,7 @@
 'use strict';
 
+var app = angular.module('app', []).
+
 /* Controllers */
 function LlapCtrl($scope) {
   $scope.nodes = [ 
