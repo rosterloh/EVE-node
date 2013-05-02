@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/static'));
 
 app.listen(process.env.PORT || 8888);
 
-server.listen(3000);
+server.listen(8888);
 
 //var handler = {};
 //handler["/leds"] = handlers.leds;
