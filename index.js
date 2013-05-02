@@ -22,7 +22,7 @@ app.listen(process.env.PORT || 8888);
 io.set('log level', 1);  
 io.sockets.on("connection", handlers.handleSocket );
 console.log("socket started ...");
-server.listen(8888);
+server.listen(3000);
 
 //var handler = {};
 //handler["/leds"] = handlers.leds;
