@@ -3,20 +3,23 @@
 /* Controllers */
 function LlapCtrl($scope, $http, socket) {
   $scope.nodes = [ 
-      { "id": "DH", "type": "TMP", "value": "0" },
-      { "id": "DH", "type": "HUM", "value": "0" }
+      { id: "DH", type: "TMP", value: "0" },
+      { id: "DH", type: "HUM", value: "0" }
   ];
   
   // handle incoming change events
   socket.on("data:received", function(data) {
-    var id = data.id;
-    $scope.leds[id].r = data.r;
-    $scope.leds[id].g = data.g;
-    $scope.leds[id].b = data.b;
+    if ($scope.nodes[data.id].type === data.type) {
+        // Update existing value
+        $scope.nodes[data.id].value = data.value;
+    } else {
+        // Add new node
+        $scope.nodes.append(data);
+    }
   });
 
   socket.on("data:sent", function(data) {
-    $scope.leds = data;
+    $scope.nodes = data;
   });
 }
 
