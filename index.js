@@ -1,6 +1,6 @@
 //var server = require("./server.js");
 //var router = require("./router.js");
-var handlers = require("./handlers.js");
+//var handlers = require("./handlers.js");
 var sockets = require("./sockets.js");
 var express = require('express');
 var app = express();
