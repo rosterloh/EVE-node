@@ -7,8 +7,8 @@ var server = app.listen(8888);
 var io = require('socket.io').listen(server);
  
 app.configure(function(){
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
+    //app.set('views', __dirname + '/views');
+    //app.set('view engine', 'jade');
     app.use(express.favicon());
     app.use(express.logger('dev'));
     //app.use(express.compress());
@@ -25,7 +25,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
  
-app.get('/', routes.index); 
+//app.get('/', routes.index); 
  
 console.log("Express server listening on port 8888");
 /*
