@@ -8,10 +8,10 @@ var io = require('socket.io')
     , handlers = require('./handlers.js');
 
 //io.set('log level', 1);  
-io.sockets.on("connection", handlers.handleSocket );
 //console.log("socket started ...");
-io.listen(server);
- 
+io = io.listen(server);
+io.sockets.on("connection", handlers.handleSocket );
+
 app.configure(function(){
     //app.set('views', __dirname + '/views');
     //app.set('view engine', 'jade');
