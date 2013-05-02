@@ -184,7 +184,7 @@ serialPort.on('data', function(data) {
     };
     console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
 	// let all the clients know about the message
-	//sockets.emit('received-llap-msg', reading);
+	sockets.emit('received-llap-msg', reading);
   } else {
 	// message not valid
     console.log('Invalid message received. ['+msg+']');
