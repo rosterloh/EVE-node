@@ -2,6 +2,10 @@
 
 /* Controllers */
 function LlapCtrl($scope, $http, socket) {
+  $scope.nodes = [ 
+      { "id": "DH", "type": "TMP", "value": "0" },
+      { "id": "DH", "type": "HUM", "value": "0" }
+  ];
   
   // handle incoming change events
   socket.on("data:received", function(data) {
