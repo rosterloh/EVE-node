@@ -7,7 +7,7 @@ var server = app.listen(8888);
 var io = require('socket.io')
     , handlers = require('./handlers.js');
 
-io.set('log level', 1);  
+//io.set('log level', 1);  
 io.sockets.on("connection", handlers.handleSocket );
 //console.log("socket started ...");
 io.listen(server);
