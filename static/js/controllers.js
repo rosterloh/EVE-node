@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-function LlapCtrl($scope, $http, socket) {
+function LlapCtrl($scope) {
   $scope.nodes = [ 
       { id: "DH", type: "TMP", value: "0" },
       { id: "DH", type: "HUM", value: "0" }
