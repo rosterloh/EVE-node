@@ -152,6 +152,13 @@ function animate(socket, leds) {
 var lhelper = require('./llap_helper');
 var com = require("serialport");
 
+function Reading(id, type, value) {
+    this.id = id;
+    this.type = type;
+    this.value = value;
+    this.lastUpdate = new Date();
+}
+
 var nodes = {};
 function updateNodes(data) {
     if(nodes[data.id] === data.type) {
