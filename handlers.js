@@ -1,8 +1,8 @@
 // var formidable = require("formidable");
-var util = require("util");
-var sys = require('sys');
+//var util = require("util");
+//var sys = require('sys');
 
-
+/*
 var Pixel = require('adafruit_pixel').Pixel;
 var pixels = new Pixel('/dev/spidev0.0', 25);
 pixels.all(0, 0, 0);
@@ -30,7 +30,7 @@ function renderLeds(request, response) {
   response.write(JSON.stringify(leds));
   response.end();
 }
-
+*/
 /*
 function postLed(request, response) {
   console.log("postLed");
@@ -56,7 +56,7 @@ function postLed(request, response) {
   });
 }
 */
-
+/*
 // set a single led
 function setLed(id, r, g, b) {
   var ir = parseInt(r);
@@ -148,7 +148,7 @@ function animate(socket, leds) {
     }, 100);
   }
 }
-
+*/
 var lhelper = require('./llap_helper');
 var com = require("serialport");
 
@@ -162,15 +162,15 @@ var llapParser = function(emitter, buffer){
         incomingData = incomingData.substr(12).replace(/^[^]*?a/,'a');
 	}
 }
-
-var serialPort = new com.SerialPort("/dev/ttySRF0", {
+var port = "/dev/ttySRF0";
+var serialPort = new com.SerialPort(port, {
     baudrate: 9600,
     parser: llapParser
     //parser: com.parsers.raw
 });
 
 serialPort.on('open',function() {
-  console.log('Port open');
+  console.log('Port on '+port+' open');
 });
 
 serialPort.on('data', function(data) {
@@ -191,6 +191,15 @@ serialPort.on('data', function(data) {
   }
 });
 
+var nodes = [];
+
+// send current nodes as json
+function renderNodes(request, response) {
+  response.writeHead(200, {"Content-Type": "application/json"});
+  response.write(JSON.stringify(nodes));
+  response.end();
+}
+
 // handle socket events
 function handleSocket(socket) {
   socket.on("change:led", function(data) {
@@ -204,5 +213,5 @@ function handleSocket(socket) {
   });
 }
 
-exports.leds = renderLeds;
+exports.nodes = renderNodes;
 exports.handleSocket = handleSocket;
