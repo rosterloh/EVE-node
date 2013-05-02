@@ -13,12 +13,12 @@
 <body ng-controller="LlapCtrl" id="body" style="background-color:rgb(50, 50, 50)">
 
   <div class="container" style="max-width: 600px" >
-    <div class="row span5 ledGrid" > 
-        <ul class="thumbnails">
-          <li ng-repeat="led in leds" class="span1">
-	        <div class="thumbnail2" style="background-color:rgb({{led.r}}, {{led.g}}, {{led.b}})"</div>
-	      </li>
-      </ul>
+    <div class="row span3" > 
+        <ul ng-repeat="node in nodes" class="thumbnails">
+          <li>{{node.id}}</li>
+          <li>{{node.type}}</li>
+          <li>{{node.value}}</li>
+        </ul>
   </div>
   <div class="container" style="max-width: 600px" >
     <div class="span1 btn btn-primary" ng-click="startAnimation()">start</div>
