@@ -6,7 +6,7 @@ function LlapCtrl($scope) {
       { id: "DH", type: "TMP", value: "0" },
       { id: "DH", type: "HUM", value: "0" }
   ];
-  
+  /*
   // handle incoming change events
   socket.on("data:received", function(data) {
     if ($scope.nodes[data.id].type === data.type) {
@@ -20,7 +20,7 @@ function LlapCtrl($scope) {
 
   socket.on("data:sent", function(data) {
     $scope.nodes = data;
-  });
+  });*/
 }
 
 function LedCtrl($scope, $http, socket) {
