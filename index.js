@@ -28,6 +28,7 @@ app.configure('development', function(){
 //app.get('/', routes.index); 
  
 console.log("Express server listening on port 8888");
+
 /*
 //var server = require("./server.js");
 //var router = require("./router.js");
