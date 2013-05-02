@@ -19,4 +19,5 @@ var handler = {};
 handler["/leds"] = handlers.leds;
 
 //server.start(router.routeHttp, handler);
-sockets.start(server.app, handlers.handleSocket);
+//sockets.start(server.app, handlers.handleSocket);
+sockets.start(app, handlers.handleSocket);
