@@ -19,6 +19,9 @@ app.use(express.static(__dirname + '/static'));
 
 app.listen(process.env.PORT || 8888);
 
+io.set('log level', 1);  
+io.sockets.on("connection", handlers.handleSocket );
+console.log("socket started ...");
 server.listen(8888);
 
 //var handler = {};
