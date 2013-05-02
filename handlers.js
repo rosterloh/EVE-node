@@ -152,6 +152,15 @@ function animate(socket, leds) {
 var lhelper = require('./llap_helper');
 var com = require("serialport");
 
+var nodes = [];
+function updateNodes(data) {
+    if(nodes[data.id] === data.type) {
+        nodes.value = data.value;
+    } else {
+        nodes.append(data);
+    } 
+}
+
 var incomingData = "";
 var llapParser = function(emitter, buffer){
     incomingData += buffer.toString();
@@ -184,14 +193,13 @@ serialPort.on('data', function(data) {
     };
     console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
 	// let all the clients know about the message
-	sockets.emit('received-llap-msg', reading);
+	//sockets.emit('received-llap-msg', reading);
+    updateNodes(reading);
   } else {
 	// message not valid
     console.log('Invalid message received. ['+msg+']');
   }
 });
-
-var nodes = [];
 
 // send current nodes as json
 function renderNodes(request, response) {
