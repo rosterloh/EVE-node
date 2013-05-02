@@ -158,6 +158,7 @@ function updateNodes(data) {
         nodes.value = data.value;
     } else {
         nodes.append(data);
+        console.log('New Node detected: '+data.id+' '+data.type);
     } 
 }
 
@@ -191,7 +192,7 @@ serialPort.on('data', function(data) {
         type: msg.substring(3,6),
         value: msg.substring(6,12).replace(/-/g, '')
     };
-    console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
+    //console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
 	// let all the clients know about the message
 	//sockets.emit('data:received', reading);
     updateNodes(reading);
