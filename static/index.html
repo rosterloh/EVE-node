@@ -21,12 +21,10 @@
             <a class="btn btn-primary btn-large" ng-click="stopAnimation()">Stop &raquo;</a></p>
         </div><!-- .hero-unit -->
             
-        <div class="row" >
-            <div ng-repeat="node in nodes" class="main">
-                <div class="span3"><h3>{{node.id}}</h3></div>
-                <div class="span3"><h3>{{node.type}}</h3></div>
-                <div class="span3"><h3>{{node.value}}</h3></div>
-            </div>
+        <div ng-repeat="node in nodes" class="row" >
+            <div class="span3"><h3>{{node.id}}</h3></div>
+            <div class="span3"><h3>{{node.type}}</h3></div>
+            <div class="span3"><h3>{{node.value}}</h3></div>
         </div><!-- .row -->
     </div><!-- .container -->
 
