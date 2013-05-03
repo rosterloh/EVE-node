@@ -175,7 +175,7 @@ function updateNodes(data) {
     for (node in nodes) {
         if ((node.id === data.id) && (node.type === data.type)) {
             node.value = data.value;
-            node.lastUpdate = Date.now();
+            node.timestamp();
         } else {
             nodes.append(data);
             console.log('New Node detected: '+data.id+' '+data.type);
