@@ -250,7 +250,7 @@ serialPort.on('data', function(data) {
         // let all the clients know about the message
         //sockets.emit('data:received', reading);
         updateNodes(reading);
-        //console.log(nodes);
+        console.log(nodes);
     } else {
         // message not valid
         console.log('Invalid message received. ['+msg+']');
