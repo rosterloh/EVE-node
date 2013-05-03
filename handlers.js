@@ -176,13 +176,17 @@ function updateNodes(data) {
         console.log('New Node detected: '+data.id+' '+data.type);
     } 
     */
-    for (var i=0; i<nodes.length(); i++) {
-        if ((nodes[i].id === data.id) && (nodes[i].type === data.type)) {
-            nodes[i].value = data.value;
-            nodes[i].timestamp();
-        } else {
-            nodes.push(data);
-            console.log('New Node detected: '+data.id+' '+data.type);
+    if (nodes.length === 0) {
+        nodes.push(data);
+    } else {
+        for (var i=0; i<nodes.length(); i++) {
+            if ((nodes[i].id === data.id) && (nodes[i].type === data.type)) {
+                nodes[i].value = data.value;
+                nodes[i].timestamp();
+            } else {
+                nodes.push(data);
+                console.log('New Node detected: '+data.id+' '+data.type);
+            }
         }
     }
 }
