@@ -122,7 +122,7 @@ function renderNodes(request, response) {
 // handle socket events
 function handleSocket(socket) {
     socket.on("get:nodes", function(data) {
-        socket.emit("nodes", nodes);
+        socket.emit("nodes:all", nodes);
     });
     socket.on("change:led", function(data) {
         //changeLed(socket, data);
