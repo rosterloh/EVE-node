@@ -163,7 +163,7 @@ function Reading(id, type, value) {
     this.announce = function() {
         var year = this.lastUpdate.getFullYear();
         var month = this.lastUpdate.getMonth()+1;
-        var date1 = this.lastUpdate.getDate();
+        var date = this.lastUpdate.getDate();
         var hour = this.lastUpdate.getHours();
         var minutes = this.lastUpdate.getMinutes();
         var seconds = this.lastUpdate.getSeconds();
