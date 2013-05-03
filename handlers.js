@@ -169,7 +169,7 @@ function Reading(id, type, value) {
         var seconds = this.lastUpdate.getSeconds();
         var time = year+"-"+month+"-"+date+" "+hour+":"+minutes+":"+seconds;
         //console.log(time+': New '+this.type+' reading from '+this.id+' of '+this.value);
-        console.log(thislastUpdate.toString()+': New '+this.type+' reading from '+this.id+' of '+this.value);
+        console.log(this.lastUpdate.toString()+': New '+this.type+' reading from '+this.id+' of '+this.value);
     }
 }
 
