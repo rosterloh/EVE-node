@@ -34,7 +34,8 @@ function updateNodes(data) {
         while(!found) {
             if ((nodes[i].id == data.id) && (nodes[i].type == data.type)) {
                 nodes[i].value = data.value;
-                nodes[i].timestamp();
+                //nodes[i].timestamp();
+                nodes[i].lastUpdate = new Date();
                 found = true;
             } else {
                 i++;
@@ -92,20 +93,19 @@ serialPort.on('data', function(data) {
     var msg = data.toString();
     // process data received
     if (lhelper.isValid(msg)) {
-        /*
         var reading = {
             id: msg.substring(1,3),
             type: msg.substring(3,6),
-            value: msg.substring(6,12).replace(/-/g, '')
-        };
-        */
-        var reading = new Reading(msg.substring(1,3), msg.substring(3,6), msg.substring(6,12).replace(/-/g, ''));
-        reading.announce();
-        //console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
+            value: msg.substring(6,12).replace(/-/g, ''),
+            lastUpdate: new Date()
+        };        
+        //var reading = new Reading(msg.substring(1,3), msg.substring(3,6), msg.substring(6,12).replace(/-/g, ''));
+        //reading.announce();
+        //console.log(reading.type+' value of '+reading.value+' received from '+reading.id+' at '+reading.lastUpdate.toString());
         // let all the clients know about the message
         //sockets.emit('data:received', reading);
         updateNodes(reading);
-        console.log(nodes);
+        //console.log(nodes);
     } else {
         // message not valid
         console.log('Invalid message received. ['+msg+']');
