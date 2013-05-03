@@ -175,17 +175,10 @@ function Reading(id, type, value) {
 //var nodes = {};
 var nodes = [];
 function updateNodes(data) {
-    /*
-    if(nodes[data.id] === data.type) {
-        nodes.value = data.value;
-    } else {
-        nodes.append(data);
-        console.log('New Node detected: '+data.id+' '+data.type);
-    } 
-    */
     if (nodes.length === 0) {
         nodes.push(data);
     } else {
+        /*
         for (var i=0; i<nodes.length; i++) {
             console.log('id is '+(nodes[i].id == data.id)+' and type is '+(nodes[i].type == data.type)+' and together '+((nodes[i].id == data.id) && (nodes[i].type == data.type)));
             if ((nodes[i].id == data.id) && (nodes[i].type == data.type)) {
@@ -196,6 +189,24 @@ function updateNodes(data) {
                 nodes.push(data);
                 console.log('New Node detected: '+data.id+' '+data.type+', Total Nodes:['+nodes.length+']');
             }
+        }
+        */
+        // .filter  Creates a new array with all elements that pass the test implemented by the provided function.
+        // .map     Creates a new array with the results of calling a provided function on every element in this array.
+        // .reduce  Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.
+        var filtered = nodes.filter(function (element, index, array) {
+            return ((data.id == element.id) && (data.type == element.type))
+        });
+        if (filtered.length > 0) {
+            for (var i=0; i<filtered.length; i++) {
+                if (filtered[i] !== null) {
+                    nodes[i].value = data.value;
+                    nodes[i].timestamp();
+                }
+            }
+        } else {
+            nodes.push(data);
+            console.log('New Node detected: '+data.id+' '+data.type+', Total Nodes:['+nodes.length+']');
         }
     }
 }
