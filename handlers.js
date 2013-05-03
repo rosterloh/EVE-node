@@ -180,7 +180,7 @@ function updateNodes(data) {
         nodes.push(data);
     } else {
         for (var i=0; i<nodes.length; i++) {
-            if ((nodes[i].id === data.id) && (nodes[i].type === data.type)) {
+            if ((nodes[i].id == data.id) && (nodes[i].type == data.type)) {
                 nodes[i].value = data.value;
                 nodes[i].timestamp();
             } else {
