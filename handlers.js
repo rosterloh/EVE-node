@@ -161,7 +161,7 @@ function Reading(id, type, value) {
         this.lastUpdate = Date.now();
     };
     this.announce = function() {
-        console.log(this.lastUpdate+': New '+this.type+' reading from '+this.id+' of '+this.value);
+        console.log(this.lastUpdate.toString()+': New '+this.type+' reading from '+this.id+' of '+this.value);
     }
 }
 
@@ -176,10 +176,10 @@ function updateNodes(data) {
         console.log('New Node detected: '+data.id+' '+data.type);
     } 
     */
-    for (node in nodes) {
-        if ((node.id === data.id) && (node.type === data.type)) {
-            node.value = data.value;
-            node.timestamp();
+    for (var i=0; i<nodes.length(); i++) {
+        if ((nodes[i].id === data.id) && (nodes[i].type === data.type)) {
+            nodes[i].value = data.value;
+            nodes[i].timestamp();
         } else {
             nodes.push(data);
             console.log('New Node detected: '+data.id+' '+data.type);
