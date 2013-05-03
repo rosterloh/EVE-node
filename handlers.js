@@ -156,17 +156,17 @@ function Reading(id, type, value) {
     this.id = id;
     this.type = type;
     this.value = value;
-    this.lastUpdate = new Date;
+    this.lastUpdate = Date.now();
     this.timestamp = function() {
-        this.lastUpdate = new Date;
+        this.lastUpdate = Date.now();
     };
     this.announce = function() {
-        var year = this.timestamp.getFullYear();
-        var month = this.timestamp.getMonth()+1;
-        var date1 = this.timestamp.getDate();
-        var hour = this.timestamp.getHours();
-        var minutes = this.timestamp.getMinutes();
-        var seconds = this.timestamp.getSeconds();
+        var year = this.lastUpdate.getFullYear();
+        var month = this.lastUpdate.getMonth()+1;
+        var date1 = this.lastUpdate.getDate();
+        var hour = this.lastUpdate.getHours();
+        var minutes = this.lastUpdate.getMinutes();
+        var seconds = this.lastUpdate.getSeconds();
         var time = year+"-"+month+"-"+date+" "+hour+":"+minutes+":"+seconds;
         console.log(time+': New '+this.type+' reading from '+this.id+' of '+this.value);
     }
