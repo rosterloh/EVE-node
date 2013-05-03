@@ -184,6 +184,7 @@ function updateNodes(data) {
             if ((nodes[i].id == data.id) && (nodes[i].type == data.type)) {
                 nodes[i].value = data.value;
                 nodes[i].timestamp();
+                break;
             } else {
                 nodes.push(data);
                 console.log('New Node detected: '+data.id+' '+data.type+', Total Nodes:['+nodes.length+']');
