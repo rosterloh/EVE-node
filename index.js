@@ -11,6 +11,7 @@ var io = require('socket.io')
 //console.log("socket started ...");
 io = io.listen(server);
 io.sockets.on("connection", handlers.handleSocket );
+exports.io = io;
 
 app.configure(function(){
     //app.set('views', __dirname + '/views');
