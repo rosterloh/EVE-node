@@ -179,7 +179,7 @@ function updateNodes(data) {
     if (nodes.length === 0) {
         nodes.push(data);
     } else {
-        for (var i=0; i<nodes.length(); i++) {
+        for (var i=0; i<nodes.length; i++) {
             if ((nodes[i].id === data.id) && (nodes[i].type === data.type)) {
                 nodes[i].value = data.value;
                 nodes[i].timestamp();
