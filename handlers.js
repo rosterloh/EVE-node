@@ -160,6 +160,9 @@ function Reading(id, type, value) {
     this.timestamp = function() {
         this.lastUpdate = Date.now();
     };
+    this.announce = function() {
+        console.log('New '+this.type+' reading from '+this.id+' of '+this.value);
+    }
 }
 
 //var nodes = {};
@@ -217,6 +220,7 @@ serialPort.on('data', function(data) {
         };
         */
         var reading = new Reading(msg.substring(1,3), msg.substring(3,6), msg.substring(6,12).replace(/-/g, ''));
+        reading.announce();
         //console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
         // let all the clients know about the message
         //sockets.emit('data:received', reading);
