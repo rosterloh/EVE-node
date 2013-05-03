@@ -156,9 +156,9 @@ function Reading(id, type, value) {
     this.id = id;
     this.type = type;
     this.value = value;
-    this.lastUpdate = Date.now();
+    this.lastUpdate = new Date();
     this.timestamp = function() {
-        this.lastUpdate = Date.now();
+        this.lastUpdate = new Date();
     };
     this.announce = function() {
         var year = this.lastUpdate.getFullYear();
