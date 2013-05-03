@@ -157,6 +157,9 @@ function Reading(id, type, value) {
     this.type = type;
     this.value = value;
     this.lastUpdate = Date.now();
+    this.doSomething = function() {
+        return false;
+    };
 }
 
 var nodes = {};
