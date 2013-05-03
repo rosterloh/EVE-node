@@ -6,6 +6,11 @@ function LlapCtrl($scope) {
       { id: "DH", type: "TMP", value: "0" },
       { id: "DH", type: "HUM", value: "0" }
   ];
+  
+  // fetch all current nodes from server at startup
+  $http.get('leds').success(function(data) {
+    $scope.nodes = data;
+  });
   /*
   // handle incoming change events
   socket.on("data:received", function(data) {
