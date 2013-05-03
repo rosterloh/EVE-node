@@ -21,6 +21,14 @@ function LlapCtrl($scope, socket) {
     }
     
     // handle incoming change events
+    socket.on('connect', function() {
+        console.log('Server connected.');
+    });
+    
+    socket.on('disconnect', function () {
+        console.log('Server disconnected.');
+    });
+    
     socket.on("nodes:all", function(data) {
         console.log('Got node data '+data);
         $scope.nodes = data;
