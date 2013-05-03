@@ -1,5 +1,6 @@
-var lhelper = require('./llap_helper');
-var com = require("serialport");
+var lhelper = require('./llap_helper')
+    , com = require("serialport")
+    , io = require('socket.io');
 
 function Reading(id, type, value) {
     this.id = id;
@@ -111,6 +112,8 @@ serialPort.on('data', function(data) {
         // let all the clients know about the message
         //sockets.emit('data:received', reading);
         updateNodes(reading);
+        //broadcast to all connected clients
+        io.sockets.emit("nodes:all", nodes);
         //console.log(nodes);
     } else {
         // message not valid
