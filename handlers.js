@@ -180,6 +180,7 @@ function updateNodes(data) {
         nodes.push(data);
     } else {
         for (var i=0; i<nodes.length; i++) {
+            console.log('id is '+(nodes[i].id == data.id)+' and type is '+(nodes[i].type == data.type)+' and together '+((nodes[i].id == data.id) && (nodes[i].type == data.type)));
             if ((nodes[i].id == data.id) && (nodes[i].type == data.type)) {
                 nodes[i].value = data.value;
                 nodes[i].timestamp();
