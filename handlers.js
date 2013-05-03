@@ -161,7 +161,7 @@ function Reading(id, type, value) {
         this.lastUpdate = Date.now();
     };
     this.announce = function() {
-        console.log('New '+this.type+' reading from '+this.id+' of '+this.value);
+        console.log(this.lastUpdate+': New '+this.type+' reading from '+this.id+' of '+this.value);
     }
 }
 
