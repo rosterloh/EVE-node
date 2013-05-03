@@ -1,6 +1,6 @@
 var lhelper = require('./llap_helper')
-    , com = require("serialport");
-//    , io = require('socket.io');
+    , com = require("serialport")
+    , io = require('./index').io;
 
 function Reading(id, type, value) {
     this.id = id;
@@ -113,7 +113,7 @@ serialPort.on('data', function(data) {
         //sockets.emit('data:received', reading);
         updateNodes(reading);
         //broadcast to all connected clients
-        io.sockets.emit("nodes:all", nodes);
+        io.emit("nodes:all", nodes);
         //console.log(nodes);
     } else {
         // message not valid
