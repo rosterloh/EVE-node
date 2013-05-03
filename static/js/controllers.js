@@ -1,31 +1,38 @@
 'use strict';
 
 /* Controllers */
-function LlapCtrl($scope) {
-  $scope.nodes = [ 
-      { id: "DH", type: "TMP", value: "0" },
-      { id: "DH", type: "HUM", value: "0" }
-  ];
+function LlapCtrl($scope, $http, socket) {
+    $scope.nodes = [ 
+        { id: "DH", type: "TMP", value: "0" },
+        { id: "DH", type: "HUM", value: "0" }
+    ];
+      
+    // fetch all current nodes from server at startup
+    /*$http.get('leds').success(function(data) {
+        $scope.nodes = data;
+    }); */
   
-  // fetch all current nodes from server at startup
-  $http.get('leds').success(function(data) {
-    $scope.nodes = data;
-  });
-  /*
-  // handle incoming change events
-  socket.on("data:received", function(data) {
-    if ($scope.nodes[data.id].type === data.type) {
-        // Update existing value
-        $scope.nodes[data.id].value = data.value;
-    } else {
-        // Add new node
-        $scope.nodes.append(data);
+    $scope.getNodes = function() {
+        socket.emit("get:nodes", {});
     }
-  });
+  
+    // handle incoming change events
+    socket.on("nodes:all", function(data) {
+        $scope.nodes = data;
+    });
 
-  socket.on("data:sent", function(data) {
-    $scope.nodes = data;
-  });*/
+    socket.on("nodes:update", function(data) {
+        for (var i=0; i<data.length; i++) {
+            if ($scope.nodes[data[i].id].type === data[i].type) {
+                // Update existing value
+                $scope.nodes[data[i].id].value = data[i].value;
+                $scope.nodes[data[i].id].lastUpdate = data[i].lastUpdate;
+            } else {
+                // Add new node
+                $scope.nodes.push(data[i]);
+            }
+        }
+    });
 }
 
 function LedCtrl($scope, $http, socket) {
