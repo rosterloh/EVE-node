@@ -162,7 +162,8 @@ function Reading(id, type, value) {
     };
 }
 
-var nodes = {};
+//var nodes = {};
+var nodes = [];
 function updateNodes(data) {
     /*
     if(nodes[data.id] === data.type) {
@@ -177,7 +178,7 @@ function updateNodes(data) {
             node.value = data.value;
             node.timestamp();
         } else {
-            nodes.append(data);
+            nodes.push(data);
             console.log('New Node detected: '+data.id+' '+data.type);
         }
     };
