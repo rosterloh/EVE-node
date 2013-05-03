@@ -161,7 +161,14 @@ function Reading(id, type, value) {
         this.lastUpdate = Date.now();
     };
     this.announce = function() {
-        console.log(this.lastUpdate.toString()+': New '+this.type+' reading from '+this.id+' of '+this.value);
+        var year = this.timestamp.getFullYear();
+        var month = this.timestamp.getMonth()+1;
+        var date1 = this.timestamp.getDate();
+        var hour = this.timestamp.getHours();
+        var minutes = this.timestamp.getMinutes();
+        var seconds = this.timestamp.getSeconds();
+        var time = year+"-"+month+"-"+date+" "+hour+":"+minutes+":"+seconds;
+        console.log(time+': New '+this.type+' reading from '+this.id+' of '+this.value);
     }
 }
 
