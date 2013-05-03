@@ -113,8 +113,7 @@ serialPort.on('data', function(data) {
         //sockets.emit('data:received', reading);
         updateNodes(reading);
         //broadcast to all connected clients
-        //io.socket.emit("nodes:all", nodes);
-        console.log(index.io);
+        index.io.sockets.emit("nodes:all", nodes);
         //console.log(nodes);
     } else {
         // message not valid
