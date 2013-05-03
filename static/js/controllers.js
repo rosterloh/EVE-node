@@ -16,8 +16,13 @@ function LlapCtrl($scope, $http, socket) {
         socket.emit("get:nodes", {});
     }
   
+    $scope.stopAnimation = function() {
+        socket.emit("stopAnimation", {});
+    }
+    
     // handle incoming change events
     socket.on("nodes:all", function(data) {
+        console.log('Got node data '+data);
         $scope.nodes = data;
     });
 
