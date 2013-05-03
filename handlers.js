@@ -45,7 +45,13 @@ function updateNodes(data) {
                 console.log('New Node detected: '+data.id+' '+data.type+', Total Nodes:['+nodes.length+']');
                 found = true;
             }
-        }        
+        }
+        // .forEach Executes a provided function once per array element.
+        //function logArrayElements(element, index, array) {
+        //    console.log("a[" + index + "] = " + element);
+        //}
+        //[2, 5, 9].forEach(logArrayElements);
+        
         // .filter  Creates a new array with all elements that pass the test implemented by the provided function.
         // .map     Creates a new array with the results of calling a provided function on every element in this array.
         // .reduce  Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.
