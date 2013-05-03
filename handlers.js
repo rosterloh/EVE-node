@@ -184,7 +184,7 @@ function updateNodes(data) {
             nodes.push(data);
             console.log('New Node detected: '+data.id+' '+data.type);
         }
-    };
+    }
 }
 
 var incomingData = "";
@@ -225,6 +225,7 @@ serialPort.on('data', function(data) {
         // let all the clients know about the message
         //sockets.emit('data:received', reading);
         updateNodes(reading);
+        console.log(nodes);
     } else {
         // message not valid
         console.log('Invalid message received. ['+msg+']');
