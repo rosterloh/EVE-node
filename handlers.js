@@ -161,13 +161,13 @@ function Reading(id, type, value) {
         this.lastUpdate = new Date();
     };
     this.announce = function() {
-        var year = this.lastUpdate.getFullYear();
-        var month = this.lastUpdate.getMonth()+1;
-        var date = this.lastUpdate.getDate();
-        var hour = this.lastUpdate.getHours();
-        var minutes = this.lastUpdate.getMinutes();
-        var seconds = this.lastUpdate.getSeconds();
-        var time = year+"-"+month+"-"+date+" "+hour+":"+minutes+":"+seconds;
+        //var year = this.lastUpdate.getFullYear();
+        //var month = this.lastUpdate.getMonth()+1;
+        //var date = this.lastUpdate.getDate();
+        //var hour = this.lastUpdate.getHours();
+        //var minutes = this.lastUpdate.getMinutes();
+        //var seconds = this.lastUpdate.getSeconds();
+        //var time = year+"-"+month+"-"+date+" "+hour+":"+minutes+":"+seconds;
         //console.log(time+': New '+this.type+' reading from '+this.id+' of '+this.value);
         console.log(this.lastUpdate.toString()+': New '+this.type+' reading from '+this.id+' of '+this.value);
     }
@@ -178,6 +178,7 @@ var nodes = [];
 function updateNodes(data) {
     if (nodes.length === 0) {
         nodes.push(data);
+        console.log('New Node detected: '+data.id+' '+data.type+', Total Nodes:['+nodes.length+']');
     } else {
         /*
         for (var i=0; i<nodes.length; i++) {
