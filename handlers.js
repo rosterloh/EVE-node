@@ -185,7 +185,7 @@ function updateNodes(data) {
                 nodes[i].timestamp();
             } else {
                 nodes.push(data);
-                console.log('New Node detected: '+data.id+' '+data.type);
+                console.log('New Node detected: '+data.id+' '+data.type+' Total Nodes:['+nodes.length+']');
             }
         }
     }
