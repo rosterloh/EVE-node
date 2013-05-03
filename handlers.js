@@ -157,19 +157,30 @@ function Reading(id, type, value) {
     this.type = type;
     this.value = value;
     this.lastUpdate = Date.now();
-    this.doSomething = function() {
-        return false;
+    this.timestamp = function() {
+        this.lastUpdate = Date.now();
     };
 }
 
 var nodes = {};
 function updateNodes(data) {
+    /*
     if(nodes[data.id] === data.type) {
         nodes.value = data.value;
     } else {
         nodes.append(data);
         console.log('New Node detected: '+data.id+' '+data.type);
     } 
+    */
+    for (node in nodes) {
+        if ((node.id === data.id) && (node.type === data.type)) {
+            node.value = data.value;
+            node.lastUpdate = Date.now();
+        } else {
+            nodes.append(data);
+            console.log('New Node detected: '+data.id+' '+data.type);
+        }
+    };
 }
 
 var incomingData = "";
@@ -194,22 +205,25 @@ serialPort.on('open',function() {
 });
 
 serialPort.on('data', function(data) {
-  var msg = data.toString();
-  // process data received
-  if (lhelper.isValid(msg)) {
-    var reading = {
-        id: msg.substring(1,3),
-        type: msg.substring(3,6),
-        value: msg.substring(6,12).replace(/-/g, '')
-    };
-    //console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
-	// let all the clients know about the message
-	//sockets.emit('data:received', reading);
-    updateNodes(reading);
-  } else {
-	// message not valid
-    console.log('Invalid message received. ['+msg+']');
-  }
+    var msg = data.toString();
+    // process data received
+    if (lhelper.isValid(msg)) {
+        /*
+        var reading = {
+            id: msg.substring(1,3),
+            type: msg.substring(3,6),
+            value: msg.substring(6,12).replace(/-/g, '')
+        };
+        */
+        var reading = new Reading(msg.substring(1,3), msg.substring(3,6), msg.substring(6,12).replace(/-/g, ''));
+        //console.log(reading.type+' value of '+reading.value+' received from '+reading.id);
+        // let all the clients know about the message
+        //sockets.emit('data:received', reading);
+        updateNodes(reading);
+    } else {
+        // message not valid
+        console.log('Invalid message received. ['+msg+']');
+    }
 });
 
 // send current nodes as json
