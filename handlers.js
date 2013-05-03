@@ -1,6 +1,6 @@
 var lhelper = require('./llap_helper')
-    , com = require("serialport")
-    , io = require('socket.io');
+    , com = require("serialport");
+//    , io = require('socket.io');
 
 function Reading(id, type, value) {
     this.id = id;
