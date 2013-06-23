@@ -1,0 +1,20 @@
+<div class="main" ng-animate="{show: 'fade-show', hide: 'fade-hide'}">
+    <div class="container" style="padding-top: 100px">
+        <div class="row">
+            <div class="span4">
+                Send Command:
+                <br />
+                <input ng-model="command" type="text">
+            </div>
+            <div class="span4 btn-group">
+                <button class="btn btn-primary" type="button" 
+                    ng-click="send()">Send</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span8">
+                <textarea rows="7" ng-model="log"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
